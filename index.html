@@ -1,322 +1,255 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Madurai Spice Hub - Taste the best flavors in town. Order online, reserve table, and enjoy premium Indian food." />
-  <meta name="keywords" content="Madurai Spice Hub, restaurant, food, biryani, online order, reserve table, Madurai" />
-  <meta name="author" content="Madurai Spice Hub" />
-  <meta property="og:title" content="Madurai Spice Hub" />
-  <meta property="og:description" content="Taste the best flavors in town. Premium restaurant with online ordering and table reservations." />
-  <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#0b0b0d" />
-  <title>Madurai Spice Hub | Taste the Best Flavors in Town</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body class="dark">
-  <div class="loader" id="loader">
-    <div class="loader-ring"></div>
-    <p>Loading your feast...</p>
-  </div>
+const loader = document.getElementById('loader');
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    if (loader) loader.style.display = 'none';
+  }, 800);
+});
 
-  <header class="site-header">
-    <div class="topbar">
-      <p>⭐⭐⭐⭐⭐ 4.8/5 Customer Rating</p>
-      <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">🌙</button>
-    </div>
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
 
-    <nav class="navbar">
-      <a href="#home" class="logo">Madurai <span>Spice Hub</span></a>
-      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#stats">Stats</a></li>
-        <li><a href="#featured">Featured</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#signature">Signature</a></li>
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#why">Why Us</a></li>
-        <li><a href="#testimonials">Reviews</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#reservation">Reservation</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    body.classList.toggle('light');
+    body.classList.toggle('dark');
+    themeToggle.textContent = body.classList.contains('light') ? '☀️' : '🌙';
+  });
+}
 
-  <a class="floating-order" href="#menu">🛒 Order Now</a>
-  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
 
-  <main>
-    <section class="hero section reveal" id="home">
-      <div class="hero-video-wrap">
-        <video class="hero-video" autoplay muted loop playsinline poster="images/hero-food.jpg">
-          <source src="images/hero-video.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('show'));
+  });
+}
+
+const menuData = {
+  starters: [
+    { name: 'Chicken 65', price: 180, img: 'images/chicken-65.jpg' },
+    { name: 'Dragon Chicken', price: 220, img: 'images/dragon-chicken.jpg' },
+    { name: 'Paneer Tikka', price: 190, img: 'images/paneer-tikka.jpg' },
+    { name: 'Crispy Corn', price: 150, img: 'images/crispy-corn.jpg' },
+    { name: 'French Fries', price: 120, img: 'images/french-fries.jpg' }
+  ],
+  main: [
+    { name: 'Butter Chicken', price: 260, img: 'images/butter-chicken.jpg' },
+    { name: 'Chicken Curry', price: 240, img: 'images/chicken-curry.jpg' },
+    { name: 'Paneer Butter Masala', price: 230, img: 'images/paneer-butter-masala.jpg' },
+    { name: 'Veg Fried Rice', price: 170, img: 'images/veg-fried-rice.jpg' },
+    { name: 'Chicken Fried Rice', price: 210, img: 'images/chicken-fried-rice.jpg' }
+  ],
+  biryani: [
+    { name: 'Chicken Biryani', price: 250, img: 'images/chicken-biryani.jpg' },
+    { name: 'Mutton Biryani', price: 320, img: 'images/mutton-biryani.jpg' },
+    { name: 'Egg Biryani', price: 180, img: 'images/egg-biryani.jpg' },
+    { name: 'Veg Biryani', price: 170, img: 'images/veg-biryani.jpg' }
+  ],
+  desserts: [
+    { name: 'Gulab Jamun', price: 90, img: 'images/gulab-jamun.jpg' },
+    { name: 'Brownie with Ice Cream', price: 140, img: 'images/brownie-ice-cream.jpg' },
+    { name: 'Chocolate Lava Cake', price: 160, img: 'images/chocolate-lava-cake.jpg' },
+    { name: 'Fruit Salad', price: 110, img: 'images/fruit-salad.jpg' }
+  ],
+  beverages: [
+    { name: 'Fresh Lime Juice', price: 70, img: 'images/fresh-lime-juice.jpg' },
+    { name: 'Mango Shake', price: 120, img: 'images/mango-shake.jpg' },
+    { name: 'Cold Coffee', price: 110, img: 'images/cold-coffee.jpg' },
+    { name: 'Soft Drinks', price: 50, img: 'images/soft-drinks.jpg' }
+  ]
+};
+
+const menuGrid = document.getElementById('menuGrid');
+const tabs = document.querySelectorAll('.tab');
+let cart = [];
+
+function renderMenu(category) {
+  if (!menuGrid || !menuData[category]) return;
+
+  menuGrid.innerHTML = menuData[category].map(item => `
+    <article class="menu-item reveal">
+      <img src="${item.img}" alt="${item.name}">
+      <div class="info">
+        <h3>${item.name}</h3>
+        <p>Freshly prepared with premium ingredients</p>
+        <div class="price">₹${item.price}</div>
+        <button class="add-btn" data-name="${item.name}" data-price="${item.price}">Add to Cart</button>
       </div>
+    </article>
+  `).join('');
 
-      <div class="hero-content">
-        <p class="tagline">Taste the Best Flavors in Town</p>
-        <h1>Madurai Spice Hub</h1>
-        <p class="hero-text">A premium restaurant experience with sizzling starters, rich curries, aromatic biryanis, signature dishes, and stylish dine-in vibes.</p>
-        <div class="hero-buttons">
-          <a href="#menu" class="btn btn-primary">Order Online</a>
-          <a href="#reservation" class="btn btn-secondary">Reserve Table</a>
-        </div>
-        <div class="hero-rating">
-          <span>⭐⭐⭐⭐⭐</span>
-          <p>4.8/5 customer rating</p>
-        </div>
-      </div>
-    </section>
+  attachAddEvents();
+  observeReveals();
+}
 
-    <section class="section stats reveal" id="stats">
-      <div class="stat-grid">
-        <div class="stat-card"><h3>50+</h3><p>Menu Items</p></div>
-        <div class="stat-card"><h3>10k+</h3><p>Happy Customers</p></div>
-        <div class="stat-card"><h3>4.8/5</h3><p>Ratings</p></div>
-        <div class="stat-card"><h3>100%</h3><p>Fresh Food</p></div>
-      </div>
-    </section>
+function attachAddEvents() {
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.onclick = () => {
+      const name = btn.dataset.name;
+      const price = Number(btn.dataset.price);
+      const existing = cart.find(item => item.name === name);
+      if (existing) existing.qty += 1;
+      else cart.push({ name, price, qty: 1 });
+      renderCart();
+    };
+  });
+}
 
-    <section class="section featured reveal" id="featured">
-      <div class="section-title">
-        <p>Featured Dishes</p>
-        <h2>Chef's Specials</h2>
-      </div>
-      <div class="card-grid">
-        <article class="food-card">
-          <img src="images/chicken-65.jpg" alt="Chicken 65">
-          <div class="food-info">
-            <h3>Chicken 65</h3>
-            <p class="ingredients">Spicy, crispy, fried, aromatic</p>
-            <span>₹180</span>
-            <button class="add-btn" data-name="Chicken 65" data-price="180">Add to Cart</button>
-          </div>
-        </article>
-        <article class="food-card">
-          <img src="images/dragon-chicken.jpg" alt="Dragon Chicken">
-          <div class="food-info">
-            <h3>Dragon Chicken</h3>
-            <p class="ingredients">Saucy, crunchy, Indo-Chinese style</p>
-            <span>₹220</span>
-            <button class="add-btn" data-name="Dragon Chicken" data-price="220">Add to Cart</button>
-          </div>
-        </article>
-        <article class="food-card">
-          <img src="images/butter-chicken.jpg" alt="Butter Chicken">
-          <div class="food-info">
-            <h3>Butter Chicken</h3>
-            <p class="ingredients">Creamy, rich, buttery, tender</p>
-            <span>₹260</span>
-            <button class="add-btn" data-name="Butter Chicken" data-price="260">Add to Cart</button>
-          </div>
-        </article>
-      </div>
-    </section>
+function renderCart() {
+  const cartItems = document.getElementById('cartItems');
+  const cartTotal = document.getElementById('cartTotal');
+  if (!cartItems || !cartTotal) return;
 
-    <section class="section about reveal" id="about">
-      <div class="section-title">
-        <p>About Our Restaurant</p>
-        <h2>Premium food, warm service</h2>
-      </div>
-      <div class="about-box">
-        <p>Madurai Spice Hub blends comfort food, bold spices, and a premium dining feel. We serve quality meals prepared fresh every day with care, taste, and presentation in mind.</p>
-        <p>Whether you order online or visit our restaurant, we aim to make every plate memorable.</p>
-      </div>
-    </section>
+  if (cart.length === 0) {
+    cartItems.innerHTML = '<p>Your cart is empty.</p>';
+    cartTotal.textContent = '₹0';
+    return;
+  }
 
-    <section class="section signature reveal" id="signature">
-      <div class="section-title">
-        <p>Signature Dish</p>
-        <h2>Our must-try plate</h2>
-      </div>
-      <div class="signature-box">
-        <img src="images/chicken-biryani.jpg" alt="Signature Chicken Biryani">
+  let total = 0;
+  cartItems.innerHTML = cart.map((item, index) => {
+    total += item.price * item.qty;
+    return `
+      <div class="cart-row">
         <div>
-          <h3>Signature Chicken Biryani</h3>
-          <p>Long-grain rice, tender chicken, aromatic spices, and premium taste in every bite.</p>
-          <span>₹250</span>
-          <a href="#menu" class="btn btn-primary">Order Now</a>
+          <strong>${item.name}</strong>
+          <p>₹${item.price} x ${item.qty}</p>
+        </div>
+        <div class="qty-controls">
+          <button onclick="changeQty(${index}, -1)">-</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty(${index}, 1)">+</button>
         </div>
       </div>
-    </section>
+    `;
+  }).join('');
 
-    <section class="section menu reveal" id="menu">
-      <div class="section-title">
-        <p>Menu</p>
-        <h2>Full collection</h2>
-      </div>
+  cartTotal.textContent = `₹${total}`;
+}
 
-      <div class="menu-tabs">
-        <button class="tab active" data-category="starters">Starters</button>
-        <button class="tab" data-category="main">Main Course</button>
-        <button class="tab" data-category="biryani">Biryanis</button>
-        <button class="tab" data-category="desserts">Desserts</button>
-        <button class="tab" data-category="beverages">Beverages</button>
-      </div>
+window.changeQty = function(index, change) {
+  if (!cart[index]) return;
+  cart[index].qty += change;
+  if (cart[index].qty <= 0) cart.splice(index, 1);
+  renderCart();
+};
 
-      <div class="menu-grid" id="menuGrid"></div>
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    renderMenu(tab.dataset.category);
+  });
+});
 
-      <div class="cart-panel">
-        <h3>Your Cart</h3>
-        <div id="cartItems" class="cart-items"></div>
-        <div class="cart-total">
-          <p>Total</p>
-          <h3 id="cartTotal">₹0</h3>
-        </div>
-        <a href="#payment" class="btn btn-primary full-btn">Go to Payment</a>
-      </div>
-    </section>
+renderMenu('starters');
 
-    <section class="section why reveal" id="why">
-      <div class="section-title">
-        <p>Why Choose Us</p>
-        <h2>What makes us special</h2>
-      </div>
-      <div class="why-grid">
-        <div class="why-card"><h3>Fresh Ingredients</h3><p>Cooked daily with quality produce and spices.</p></div>
-        <div class="why-card"><h3>Premium Service</h3><p>Stylish ambience and friendly hospitality.</p></div>
-        <div class="why-card"><h3>Fast Delivery</h3><p>Online orders handled quickly and safely.</p></div>
-      </div>
-    </section>
+const reserveForm = document.getElementById('reserveForm');
+const formMsg = document.getElementById('formMsg');
 
- <section class="section testimonials reveal" id="testimonials">
-  <div class="section-title">
-    <p>Testimonials</p>
-    <h2>What our customers say</h2>
-  </div>
+if (reserveForm && formMsg) {
+  reserveForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
 
-  <div class="review-grid">
-    <article class="review-card">
-      <p>"The food was absolutely delicious, especially the chicken biryani. The flavors felt authentic and the portions were generous. The staff were friendly and made us feel welcome from the moment we walked in."</p>
-      <h4>⭐⭐⭐⭐⭐</h4>
-      <h4>- Shiva</h4>
-    </article>
+    if (name.length < 2) {
+      formMsg.textContent = 'Please enter a valid name.';
+      return;
+    }
 
-    <article class="review-card">
-      <p>"Came here with my family for dinner and had a great experience. The restaurant was clean, the service was quick, and every dish we ordered tasted fresh. We'll definitely be visiting again."</p>
-      <h4>⭐⭐⭐⭐⭐</h4>
-      <h4>- Kamesh</h4>
-    </article>
+    if (!/^[0-9]{10}$/.test(phone)) {
+      formMsg.textContent = 'Please enter a valid 10-digit phone number.';
+      return;
+    }
 
-    <article class="review-card">
-      <p>"One of the best dining experiences I've had in a while. The grilled chicken was perfectly cooked and the desserts were amazing. The atmosphere is cozy and perfect for both friends and family."</p>
-      <h4>⭐⭐⭐⭐⭐</h4>
-      <h4>- Tharun</h4>
-    </article>
+    if (!email.includes('@')) {
+      formMsg.textContent = 'Please enter a valid email address.';
+      return;
+    }
 
-    <article class="review-card">
-      <p>"I was impressed by both the quality of the food and the hospitality. The menu has plenty of options, and everything we tried was packed with flavor. Highly recommended for anyone looking for a great meal."</p>
-      <h4>⭐⭐⭐⭐⭐</h4>
-      <h4>- Fari</h4>
-    </article>
+    formMsg.textContent = 'Reservation request sent successfully!';
+    reserveForm.reset();
+  });
+}
 
-    <article class="review-card">
-      <p>"Great food, reasonable prices, and excellent service. The staff were attentive without being intrusive, and the restaurant had a warm, welcoming vibe. A hidden gem that deserves more recognition."</p>
-      <h4>⭐⭐⭐⭐⭐</h4>
-      <h4>- Ashwin</h4>
-    </article>
-  </div>
-</section>
+const backToTop = document.getElementById('backToTop');
 
-    <section class="section gallery reveal" id="gallery">
-      <div class="section-title">
-        <p>Gallery</p>
-        <h2>Food moments</h2>
-      </div>
+window.addEventListener('scroll', () => {
+  if (backToTop) backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+});
 
-      <div class="instagram-feed">
-        <img src="images/gallery1.jpg" alt="Instagram food 1">
-        <img src="images/gallery2.jpg" alt="Instagram food 2">
-        <img src="images/gallery3.jpg" alt="Instagram food 3">
-        <img src="images/gallery4.jpg" alt="Instagram food 4">
-        <img src="images/gallery5.jpg" alt="Instagram food 5">
-        <img src="images/gallery6.jpg" alt="Instagram food 6">
-      </div>
+if (backToTop) {
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
-      <div class="gallery-grid">
-        <img src="images/gallery7.jpg" alt="Gallery food 7">
-        <img src="images/gallery8.jpg" alt="Gallery food 8">
-      </div>
-    </section>
+function observeReveals() {
+  const reveals = document.querySelectorAll('.reveal');
+  if (!reveals.length) return;
 
-    <section class="section reservation reveal" id="reservation">
-      <div class="section-title">
-        <p>Reservation</p>
-        <h2>Book your table</h2>
-      </div>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('active');
+    });
+  }, { threshold: 0.15 });
 
-      <form class="reserve-form" id="reserveForm">
-        <div class="form-row">
-          <input type="text" id="name" placeholder="Your Name" required>
-          <input type="tel" id="phone" placeholder="Phone Number" required>
-        </div>
-        <div class="form-row">
-          <input type="email" id="email" placeholder="Email Address" required>
-          <input type="date" id="date" required>
-        </div>
-        <div class="form-row">
-          <input type="time" id="time" required>
-          <input type="number" id="guests" placeholder="Guests" min="1" required>
-        </div>
-        <textarea id="message" placeholder="Special request"></textarea>
-        <button type="submit" class="btn btn-primary full-btn">Reserve Now</button>
-        <p id="formMsg" class="form-msg"></p>
-      </form>
-    </section>
+  reveals.forEach(el => observer.observe(el));
+}
+observeReveals();
 
-    <section class="section payment reveal" id="payment">
-      <div class="section-title">
-        <p>Payment</p>
-        <h2>Complete your order</h2>
-      </div>
-      <div class="payment-box">
-        <p>Choose your payment option below and confirm your cart total.</p>
-        <div class="payment-methods">
-          <button class="pay-btn">UPI</button>
-          <button class="pay-btn">Card</button>
-          <button class="pay-btn">Cash on Delivery</button>
-        </div>
-        <a href="#contact" class="btn btn-primary">Confirm Payment</a>
-      </div>
-    </section>
+// Review submit success only
+const openReviewBtn = document.getElementById('openReviewBtn');
+const reviewModalOverlay = document.getElementById('reviewModalOverlay');
+const closeModal = document.getElementById('closeModal');
+const newReviewForm = document.getElementById('newReviewForm');
+const reviewMsg = document.getElementById('reviewMsg');
 
-    <section class="section contact reveal" id="contact">
-      <div class="section-title">
-        <p>Contact & Location</p>
-        <h2>Find us easily</h2>
-      </div>
+if (openReviewBtn && reviewModalOverlay) {
+  openReviewBtn.addEventListener('click', () => reviewModalOverlay.classList.add('show'));
+}
 
-      <div class="contact-grid">
-        <div class="contact-info">
-          <p><strong>Phone:</strong> +91 98765 43210</p>
-          <p><strong>WhatsApp:</strong> <a href="https://wa.me/919876543210" target="_blank">Chat on WhatsApp</a></p>
-          <p><strong>Address:</strong> Madurai, Tamil Nadu, India</p>
-          <p><strong>Hours:</strong> 11:00 AM - 11:00 PM</p>
-        </div>
+if (closeModal && reviewModalOverlay) {
+  closeModal.addEventListener('click', () => {
+    reviewModalOverlay.classList.remove('show');
+    if (reviewMsg) reviewMsg.textContent = '';
+    if (newReviewForm) newReviewForm.reset();
+  });
+}
 
-        <div class="map-box">
-          <iframe src="https://www.google.com/maps?q=Madurai,Tamil%20Nadu&output=embed" allowfullscreen loading="lazy"></iframe>
-        </div>
-      </div>
-    </section>
-  </main>
+if (reviewModalOverlay) {
+  reviewModalOverlay.addEventListener('click', (e) => {
+    if (e.target === reviewModalOverlay) {
+      reviewModalOverlay.classList.remove('show');
+      if (reviewMsg) reviewMsg.textContent = '';
+      if (newReviewForm) newReviewForm.reset();
+    }
+  });
+}
 
-  <footer class="footer">
-    <div class="footer-links">
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
-      <a href="#">YouTube</a>
-      <a href="#">WhatsApp</a>
-    </div>
-    <p>&copy; 2026 Madurai Spice Hub. All rights reserved.</p>
-  </footer>
+if (newReviewForm && reviewMsg) {
+  newReviewForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('reviewerName').value.trim();
+    const rating = document.getElementById('reviewerRating').value;
+    const text = document.getElementById('reviewerText').value.trim();
 
-  <script src="js/script.js"></script>
-</body>
-</html>
+    if (name.length < 2 || !rating || text.length < 10) {
+      reviewMsg.textContent = 'Please fill all review fields properly.';
+      return;
+    }
+
+    reviewMsg.textContent = '✅ Your review has been submitted successfully!';
+    reviewMsg.style.color = 'var(--accent2)';
+
+    setTimeout(() => {
+      reviewModalOverlay.classList.remove('show');
+      reviewMsg.textContent = '';
+      newReviewForm.reset();
+    }, 1400);
+  });
+}

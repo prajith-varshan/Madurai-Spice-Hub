@@ -1,27 +1,30 @@
 const loader = document.getElementById('loader');
 window.addEventListener('load', () => {
-  setTimeout(() => loader.style.display = 'none', 800);
+  setTimeout(() => {
+    if (loader) loader.style.display = 'none';
+  }, 800);
 });
 
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 
-themeToggle.addEventListener('click', () => {
-  body.classList.toggle('light');
-  body.classList.toggle('dark');
-  themeToggle.textContent = body.classList.contains('light') ? '☀️' : '🌙';
-});
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    body.classList.toggle('light');
+    body.classList.toggle('dark');
+    themeToggle.textContent = body.classList.contains('light') ? '☀️' : '🌙';
+  });
+}
 
 const menuBtn = document.getElementById('menuBtn');
 const navLinks = document.getElementById('navLinks');
 
-menuBtn.addEventListener('click', () => {
-  navLinks.classList.toggle('show');
-});
-
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('show'));
-});
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('show'));
+  });
+}
 
 const menuData = {
   starters: [
@@ -63,6 +66,8 @@ const tabs = document.querySelectorAll('.tab');
 let cart = [];
 
 function renderMenu(category) {
+  if (!menuGrid || !menuData[category]) return;
+
   menuGrid.innerHTML = menuData[category].map(item => `
     <article class="menu-item reveal">
       <img src="${item.img}" alt="${item.name}">
@@ -74,6 +79,7 @@ function renderMenu(category) {
       </div>
     </article>
   `).join('');
+
   attachAddEvents();
   observeReveals();
 }
@@ -94,6 +100,7 @@ function attachAddEvents() {
 function renderCart() {
   const cartItems = document.getElementById('cartItems');
   const cartTotal = document.getElementById('cartTotal');
+  if (!cartItems || !cartTotal) return;
 
   if (cart.length === 0) {
     cartItems.innerHTML = '<p>Your cart is empty.</p>';
@@ -123,6 +130,7 @@ function renderCart() {
 }
 
 window.changeQty = function(index, change) {
+  if (!cart[index]) return;
   cart[index].qty += change;
   if (cart[index].qty <= 0) cart.splice(index, 1);
   renderCart();
@@ -141,41 +149,49 @@ renderMenu('starters');
 const reserveForm = document.getElementById('reserveForm');
 const formMsg = document.getElementById('formMsg');
 
-reserveForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const email = document.getElementById('email').value.trim();
+if (reserveForm && formMsg) {
+  reserveForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
 
-  if (name.length < 2) {
-    formMsg.textContent = 'Please enter a valid name.';
-    return;
-  }
-  if (!/^[0-9]{10}$/.test(phone)) {
-    formMsg.textContent = 'Please enter a valid 10-digit phone number.';
-    return;
-  }
-  if (!email.includes('@')) {
-    formMsg.textContent = 'Please enter a valid email address.';
-    return;
-  }
+    if (name.length < 2) {
+      formMsg.textContent = 'Please enter a valid name.';
+      return;
+    }
 
-  formMsg.textContent = 'Reservation request sent successfully!';
-  reserveForm.reset();
-});
+    if (!/^[0-9]{10}$/.test(phone)) {
+      formMsg.textContent = 'Please enter a valid 10-digit phone number.';
+      return;
+    }
+
+    if (!email.includes('@')) {
+      formMsg.textContent = 'Please enter a valid email address.';
+      return;
+    }
+
+    formMsg.textContent = 'Reservation request sent successfully!';
+    reserveForm.reset();
+  });
+}
 
 const backToTop = document.getElementById('backToTop');
 
 window.addEventListener('scroll', () => {
-  backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+  if (backToTop) backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
 });
 
-backToTop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+if (backToTop) {
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
 function observeReveals() {
   const reveals = document.querySelectorAll('.reveal');
+  if (!reveals.length) return;
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('active');
@@ -184,5 +200,56 @@ function observeReveals() {
 
   reveals.forEach(el => observer.observe(el));
 }
-
 observeReveals();
+
+// Review submit success only
+const openReviewBtn = document.getElementById('openReviewBtn');
+const reviewModalOverlay = document.getElementById('reviewModalOverlay');
+const closeModal = document.getElementById('closeModal');
+const newReviewForm = document.getElementById('newReviewForm');
+const reviewMsg = document.getElementById('reviewMsg');
+
+if (openReviewBtn && reviewModalOverlay) {
+  openReviewBtn.addEventListener('click', () => reviewModalOverlay.classList.add('show'));
+}
+
+if (closeModal && reviewModalOverlay) {
+  closeModal.addEventListener('click', () => {
+    reviewModalOverlay.classList.remove('show');
+    if (reviewMsg) reviewMsg.textContent = '';
+    if (newReviewForm) newReviewForm.reset();
+  });
+}
+
+if (reviewModalOverlay) {
+  reviewModalOverlay.addEventListener('click', (e) => {
+    if (e.target === reviewModalOverlay) {
+      reviewModalOverlay.classList.remove('show');
+      if (reviewMsg) reviewMsg.textContent = '';
+      if (newReviewForm) newReviewForm.reset();
+    }
+  });
+}
+
+if (newReviewForm && reviewMsg) {
+  newReviewForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('reviewerName').value.trim();
+    const rating = document.getElementById('reviewerRating').value;
+    const text = document.getElementById('reviewerText').value.trim();
+
+    if (name.length < 2 || !rating || text.length < 10) {
+      reviewMsg.textContent = 'Please fill all review fields properly.';
+      return;
+    }
+
+    reviewMsg.textContent = '✅ Your review has been submitted successfully!';
+    reviewMsg.style.color = 'var(--accent2)';
+
+    setTimeout(() => {
+      reviewModalOverlay.classList.remove('show');
+      reviewMsg.textContent = '';
+      newReviewForm.reset();
+    }, 1400);
+  });
+}

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Madurai Spice Hub - Taste the best flavors in town. Order online, reserve table, and enjoy premium Indian food." />
+  <meta name="keywords" content="Madurai Spice Hub, restaurant, food, biryani, online order, reserve table, Madurai" />
+  <meta name="author" content="Madurai Spice Hub" />
+  <meta property="og:title" content="Madurai Spice Hub" />
+  <meta property="og:description" content="Taste the best flavors in town. Premium restaurant with online ordering and table reservations." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b0b0d" />
+  <title>Madurai Spice Hub | Taste the Best Flavors in Town</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="dark">
+  <div class="loader" id="loader">
+    <div class="loader-ring"></div>
+    <p>Loading your feast...</p>
+  </div>
+
+  <header class="site-header">
+    <div class="topbar">
+      <p>⭐⭐⭐⭐⭐ 4.8/5 Customer Rating</p>
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">🌙</button>
+    </div>
+
+    <nav class="navbar">
+      <a href="#home" class="logo">Madurai <span>Spice Hub</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#stats">Stats</a></li>
+        <li><a href="#featured">Featured</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#signature">Signature</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reservation">Reservation</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <a class="floating-order" href="#menu">🛒 Order Now</a>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <main>
+    <section class="hero section reveal" id="home">
+      <div class="hero-video-wrap">
+        <video class="hero-video" autoplay muted loop playsinline poster="images/hero-food.jpg">
+          <source src="images/hero-video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+      </div>
+
+      <div class="hero-content">
+        <p class="tagline">Taste the Best Flavors in Town</p>
+        <h1>Madurai Spice Hub</h1>
+        <p class="hero-text">A premium restaurant experience with sizzling starters, rich curries, aromatic biryanis, signature dishes, and stylish dine-in vibes.</p>
+        <div class="hero-buttons">
+          <a href="#menu" class="btn btn-primary">Order Online</a>
+          <a href="#reservation" class="btn btn-secondary">Reserve Table</a>
+        </div>
+        <div class="hero-rating">
+          <span>⭐⭐⭐⭐⭐</span>
+          <p>4.8/5 customer rating</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section stats reveal" id="stats">
+      <div class="stat-grid">
+        <div class="stat-card"><h3>50+</h3><p>Menu Items</p></div>
+        <div class="stat-card"><h3>10k+</h3><p>Happy Customers</p></div>
+        <div class="stat-card"><h3>4.8/5</h3><p>Ratings</p></div>
+        <div class="stat-card"><h3>100%</h3><p>Fresh Food</p></div>
+      </div>
+    </section>
+
+    <section class="section featured reveal" id="featured">
+      <div class="section-title">
+        <p>Featured Dishes</p>
+        <h2>Chef's Specials</h2>
+      </div>
+      <div class="card-grid">
+        <article class="food-card">
+          <img src="images/chicken-65.jpg" alt="Chicken 65">
+          <div class="food-info">
+            <h3>Chicken 65</h3>
+            <p class="ingredients">Spicy, crispy, fried, aromatic</p>
+            <span>₹180</span>
+            <button class="add-btn" data-name="Chicken 65" data-price="180">Add to Cart</button>
+          </div>
+        </article>
+        <article class="food-card">
+          <img src="images/dragon-chicken.jpg" alt="Dragon Chicken">
+          <div class="food-info">
+            <h3>Dragon Chicken</h3>
+            <p class="ingredients">Saucy, crunchy, Indo-Chinese style</p>
+            <span>₹220</span>
+            <button class="add-btn" data-name="Dragon Chicken" data-price="220">Add to Cart</button>
+          </div>
+        </article>
+        <article class="food-card">
+          <img src="images/butter-chicken.jpg" alt="Butter Chicken">
+          <div class="food-info">
+            <h3>Butter Chicken</h3>
+            <p class="ingredients">Creamy, rich, buttery, tender</p>
+            <span>₹260</span>
+            <button class="add-btn" data-name="Butter Chicken" data-price="260">Add to Cart</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section about reveal" id="about">
+      <div class="section-title">
+        <p>About Our Restaurant</p>
+        <h2>Premium food, warm service</h2>
+      </div>
+      <div class="about-box">
+        <p>Madurai Spice Hub blends comfort food, bold spices, and a premium dining feel. We serve quality meals prepared fresh every day with care, taste, and presentation in mind.</p>
+        <p>Whether you order online or visit our restaurant, we aim to make every plate memorable.</p>
+      </div>
+    </section>
+
+    <section class="section signature reveal" id="signature">
+      <div class="section-title">
+        <p>Signature Dish</p>
+        <h2>Our must-try plate</h2>
+      </div>
+      <div class="signature-box">
+        <img src="images/chicken-biryani.jpg" alt="Signature Chicken Biryani">
+        <div>
+          <h3>Signature Chicken Biryani</h3>
+          <p>Long-grain rice, tender chicken, aromatic spices, and premium taste in every bite.</p>
+          <span>₹250</span>
+          <a href="#menu" class="btn btn-primary">Order Now</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section menu reveal" id="menu">
+      <div class="section-title">
+        <p>Menu</p>
+        <h2>Full collection</h2>
+      </div>
+
+      <div class="menu-tabs">
+        <button class="tab active" data-category="starters">Starters</button>
+        <button class="tab" data-category="main">Main Course</button>
+        <button class="tab" data-category="biryani">Biryanis</button>
+        <button class="tab" data-category="desserts">Desserts</button>
+        <button class="tab" data-category="beverages">Beverages</button>
+      </div>
+
+      <div class="menu-grid" id="menuGrid"></div>
+
+      <div class="cart-panel">
+        <h3>Your Cart</h3>
+        <div id="cartItems" class="cart-items"></div>
+        <div class="cart-total">
+          <p>Total</p>
+          <h3 id="cartTotal">₹0</h3>
+        </div>
+        <a href="#payment" class="btn btn-primary full-btn">Go to Payment</a>
+      </div>
+    </section>
+
+    <section class="section why reveal" id="why">
+      <div class="section-title">
+        <p>Why Choose Us</p>
+        <h2>What makes us special</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card"><h3>Fresh Ingredients</h3><p>Cooked daily with quality produce and spices.</p></div>
+        <div class="why-card"><h3>Premium Service</h3><p>Stylish ambience and friendly hospitality.</p></div>
+        <div class="why-card"><h3>Fast Delivery</h3><p>Online orders handled quickly and safely.</p></div>
+      </div>
+    </section>
+
+    <section class="section testimonials reveal" id="testimonials">
+      <div class="section-title">
+        <p>Testimonials</p>
+        <h2>What our customers say</h2>
+      </div>
+      <div class="review-grid">
+        <article class="review-card">
+          <p>“Amazing taste and premium presentation. The biryani is outstanding.”</p>
+          <h4>- Arjun</h4>
+        </article>
+        <article class="review-card">
+          <p>“Fast online ordering and the starters were perfect for our family dinner.”</p>
+          <h4>- Priya</h4>
+        </article>
+        <article class="review-card">
+          <p>“Elegant design, great service, and the desserts are must-try.”</p>
+          <h4>- Karthik</h4>
+        </article>
+      </div>
+    </section>
+
+    <section class="section gallery reveal" id="gallery">
+      <div class="section-title">
+        <p>Gallery</p>
+        <h2>Food moments</h2>
+      </div>
+
+      <div class="instagram-feed">
+        <img src="images/gallery1.jpg" alt="Instagram food 1">
+        <img src="images/gallery2.jpg" alt="Instagram food 2">
+        <img src="images/gallery3.jpg" alt="Instagram food 3">
+        <img src="images/gallery4.jpg" alt="Instagram food 4">
+        <img src="images/gallery5.jpg" alt="Instagram food 5">
+        <img src="images/gallery6.jpg" alt="Instagram food 6">
+      </div>
+
+      <div class="gallery-grid">
+        <img src="images/gallery7.jpg" alt="Gallery food 7">
+        <img src="images/gallery8.jpg" alt="Gallery food 8">
+      </div>
+    </section>
+
+    <section class="section reservation reveal" id="reservation">
+      <div class="section-title">
+        <p>Reservation</p>
+        <h2>Book your table</h2>
+      </div>
+
+      <form class="reserve-form" id="reserveForm">
+        <div class="form-row">
+          <input type="text" id="name" placeholder="Your Name" required>
+          <input type="tel" id="phone" placeholder="Phone Number" required>
+        </div>
+        <div class="form-row">
+          <input type="email" id="email" placeholder="Email Address" required>
+          <input type="date" id="date" required>
+        </div>
+        <div class="form-row">
+          <input type="time" id="time" required>
+          <input type="number" id="guests" placeholder="Guests" min="1" required>
+        </div>
+        <textarea id="message" placeholder="Special request"></textarea>
+        <button type="submit" class="btn btn-primary full-btn">Reserve Now</button>
+        <p id="formMsg" class="form-msg"></p>
+      </form>
+    </section>
+
+    <section class="section payment reveal" id="payment">
+      <div class="section-title">
+        <p>Payment</p>
+        <h2>Complete your order</h2>
+      </div>
+      <div class="payment-box">
+        <p>Choose your payment option below and confirm your cart total.</p>
+        <div class="payment-methods">
+          <button class="pay-btn">UPI</button>
+          <button class="pay-btn">Card</button>
+          <button class="pay-btn">Cash on Delivery</button>
+        </div>
+        <a href="#contact" class="btn btn-primary">Confirm Payment</a>
+      </div>
+    </section>
+
+    <section class="section contact reveal" id="contact">
+      <div class="section-title">
+        <p>Contact & Location</p>
+        <h2>Find us easily</h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p><strong>Phone:</strong> +91 98765 43210</p>
+          <p><strong>WhatsApp:</strong> <a href="https://wa.me/919876543210" target="_blank">Chat on WhatsApp</a></p>
+          <p><strong>Address:</strong> Madurai, Tamil Nadu, India</p>
+          <p><strong>Hours:</strong> 11:00 AM - 11:00 PM</p>
+        </div>
+
+        <div class="map-box">
+          <iframe src="https://www.google.com/maps?q=Madurai,Tamil%20Nadu&output=embed" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">YouTube</a>
+      <a href="#">WhatsApp</a>
+    </div>
+    <p>&copy; 2026 Madurai Spice Hub. All rights reserved.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
